@@ -36,8 +36,8 @@ containers:
       "-e", "GOOGLE_CLIENT_ID=$(sed -n 's/^google-client-id: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "GOOGLE_CLIENT_SECRET=$(sed -n 's/^google-client-secret: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "TINFOIL_API_KEY=$(sed -n 's/^tinfoil-api-key: *//p' /mnt/ramdisk/external-config.yml)",
-      "us-central1-docker.pkg.dev/workshop-labs-pbc/pollux-docker/ml-embeddings:latest",
-      "--staging"   # or --dev in a dev config variant
+      "us-central1-docker.pkg.dev/workshop-labs-pbc/pollux-docker/ml-embeddings:afd8afc",
+      "--staging"
     ]
 
 shim:
