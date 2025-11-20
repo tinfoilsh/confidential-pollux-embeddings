@@ -26,7 +26,6 @@ containers:
       "--gpus", "all",
       "--ipc", "host",
       "-v", "/mnt/ramdisk/gcs-bucket:/mnt/gcs:ro",
-      "-v", "/root-home:/root",
       "-v", "/mnt/ramdisk/gcloud_key.json:/key.json:ro",
       "-e", "GOOGLE_APPLICATION_CREDENTIALS=/key.json",
       "-e", "GCS_BUCKET=pollux-tinfoil",
