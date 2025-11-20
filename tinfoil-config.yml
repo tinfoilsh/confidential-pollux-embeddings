@@ -30,12 +30,12 @@ containers:
       "-e", "GOOGLE_APPLICATION_CREDENTIALS=/key.json",
       "-e", "GCS_BUCKET=pollux-tinfoil",
       "-e", "POLLUX_GCSFUSE_MOUNT_PATH=/mnt/gcs",
-      "-e", "DEV_DATABASE_URL=$(awk -F': *' '$1~/^dev-database-url$/{print $2; exit}' /mnt/ramdisk/external-config.yml)",
-      "-e", "STAGING_DATABASE_URL=$(awk -F': *' '$1~/^staging-database-url$/{print $2; exit}' /mnt/ramdisk/external-config.yml)",
-      "-e", "TURBOPUFFER_API_KEY=$(awk -F': *' '$1~/^turbopuffer-api-key$/{print $2; exit}' /mnt/ramdisk/external-config.yml)",
-      "-e", "GOOGLE_CLIENT_ID=$(awk -F': *' '$1~/^google-client-id$/{print $2; exit}' /mnt/ramdisk/external-config.yml)",
-      "-e", "GOOGLE_CLIENT_SECRET=$(awk -F': *' '$1~/^google-client-secret$/{print $2; exit}' /mnt/ramdisk/external-config.yml)",
-      "-e", "TINFOIL_API_KEY=$(awk -F': *' '$1~/^tinfoil-api-key$/{print $2; exit}' /mnt/ramdisk/external-config.yml)",
+      "-e", "DEV_DATABASE_URL=$(sed -n 's/^dev-database-url: *//p' /mnt/ramdisk/external-config.yml)",
+      "-e", "STAGING_DATABASE_URL=$(sed -n 's/^staging-database-url: *//p' /mnt/ramdisk/external-config.yml)",
+      "-e", "TURBOPUFFER_API_KEY=$(sed -n 's/^turbopuffer-api-key: *//p' /mnt/ramdisk/external-config.yml)",
+      "-e", "GOOGLE_CLIENT_ID=$(sed -n 's/^google-client-id: *//p' /mnt/ramdisk/external-config.yml)",
+      "-e", "GOOGLE_CLIENT_SECRET=$(sed -n 's/^google-client-secret: *//p' /mnt/ramdisk/external-config.yml)",
+      "-e", "TINFOIL_API_KEY=$(sed -n 's/^tinfoil-api-key: *//p' /mnt/ramdisk/external-config.yml)",
       "us-central1-docker.pkg.dev/workshop-labs-pbc/pollux-docker/ml-embeddings:latest",
       "--staging"   # or --dev in a dev config variant
     ]
