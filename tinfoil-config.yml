@@ -6,30 +6,18 @@ gpus: full
 vllm: false
 
 containers:
-  # gcsfuse sidecar (consistent with inference/training pattern)
-  - name: "gcsfuse"
-    image: ""
-    args: [
-      "--cap-add", "SYS_ADMIN",
-      "--device", "/dev/fuse",
-      "--security-opt", "apparmor=unconfined",
-      "-v", "/mnt/ramdisk/gcs-bucket:/gcs:rshared",
-      "-v", "/mnt/ramdisk/gcloud_key.json:/key.json:ro",
-      "-e", "BUCKET_NAME=pollux-tinfoil",
-      "kapetacom/gcsfuse-ubuntu:v3.2.0"
-    ]
-
   - name: "ml-embeddings"
     image: ""
     args: [
       "--runtime", "nvidia",
       "--gpus", "all",
       "--ipc", "host",
-      "-v", "/mnt/ramdisk/gcs-bucket:/mnt/gcs",
+      "--cap-add", "SYS_ADMIN",
+      "--device", "/dev/fuse",
+      "--security-opt", "apparmor=unconfined",
       "-v", "/mnt/ramdisk/gcloud_key.json:/key.json:ro",
       "-e", "GOOGLE_APPLICATION_CREDENTIALS=/key.json",
       "-e", "GCS_BUCKET=pollux-tinfoil",
-      "-e", "POLLUX_GCSFUSE_MOUNT_PATH=/mnt/gcs",
       "-e", "DEV_DATABASE_URL=$(sed -n 's/^dev-database-url: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "STAGING_DATABASE_URL=$(sed -n 's/^staging-database-url: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "TURBOPUFFER_API_KEY=$(sed -n 's/^turbopuffer-api-key: *//p' /mnt/ramdisk/external-config.yml)",
@@ -37,7 +25,7 @@ containers:
       "-e", "GOOGLE_CLIENT_SECRET=$(sed -n 's/^google-client-secret: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "TINFOIL_API_KEY=$(sed -n 's/^tinfoil-api-key: *//p' /mnt/ramdisk/external-config.yml)",
       "us-central1-docker.pkg.dev/workshop-labs-pbc/pollux-docker/ml-embeddings@sha256:0374710f157c7c6512a3b736ecc3c079e08220187e94f2fb112558864562ec48",
-      "--staging"
+      "--dev"
     ]
 
 shim:
