@@ -24,7 +24,8 @@ containers:
       "-e", "GOOGLE_CLIENT_ID=$(sed -n 's/^google-client-id: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "GOOGLE_CLIENT_SECRET=$(sed -n 's/^google-client-secret: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "TINFOIL_API_KEY=$(sed -n 's/^tinfoil-api-key: *//p' /mnt/ramdisk/external-config.yml)",
-      "us-central1-docker.pkg.dev/workshop-labs-pbc/pollux-docker/ml-embeddings@sha256:021f26b26beac2c763ab71f4dcb9c685ab37400d2956be5f0055b69fb7c33128",
+      "-e", "HF_TOKEN=$(sed -n 's/^hf-token: *//p' /mnt/ramdisk/external-config.yml)",
+      "us-central1-docker.pkg.dev/workshop-labs-pbc/pollux-docker/ml-embeddings@sha256:0374710f157c7c6512a3b736ecc3c079e08220187e94f2fb112558864562ec48",
       "--dev"
     ]
 
