@@ -20,6 +20,7 @@ containers:
       "-e", "GCS_BUCKET=pollux-enc-prod",
       "-e", "DEV_DATABASE_URL=$(sed -n 's/^dev-database-url: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "STAGING_DATABASE_URL=$(sed -n 's/^staging-database-url: *//p' /mnt/ramdisk/external-config.yml)",
+      "-e", "DATABASE_URL=$(sed -n 's/^database-url: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "TURBOPUFFER_API_KEY=$(sed -n 's/^turbopuffer-api-key: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "GOOGLE_CLIENT_ID=$(sed -n 's/^google-client-id: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "GOOGLE_CLIENT_SECRET=$(sed -n 's/^google-client-secret: *//p' /mnt/ramdisk/external-config.yml)",
