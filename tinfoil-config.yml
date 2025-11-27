@@ -17,6 +17,7 @@ containers:
       "-v", "/mnt/ramdisk/gcloud_key.json:/key.json:ro",
       "-e", "GOOGLE_APPLICATION_CREDENTIALS=/key.json",
       "-e", "GCS_BUCKET=pollux-enc-prod",
+      "-e", "POLLUX_LN_GCS_BUCKET=gs://pollux-enc-prod",
       "-e", "KEY_MODE=real_keys",
       "-e", "DEV_DATABASE_URL=$(sed -n 's/^dev-database-url: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "STAGING_DATABASE_URL=$(sed -n 's/^staging-database-url: *//p' /mnt/ramdisk/external-config.yml)",
