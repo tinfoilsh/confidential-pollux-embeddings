@@ -3,7 +3,6 @@ cvm-version: 0.5.8
 cpus: 16
 memory: 65536
 gpus: full
-vllm: false
 
 containers:
   - name: "ml-embeddings"
@@ -18,6 +17,7 @@ containers:
       "-v", "/mnt/ramdisk/gcloud_key.json:/key.json:ro",
       "-e", "GOOGLE_APPLICATION_CREDENTIALS=/key.json",
       "-e", "GCS_BUCKET=pollux-enc-prod",
+      "-e", "KEY_MODE=real_keys",
       "-e", "DEV_DATABASE_URL=$(sed -n 's/^dev-database-url: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "STAGING_DATABASE_URL=$(sed -n 's/^staging-database-url: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "DATABASE_URL=$(sed -n 's/^database-url: *//p' /mnt/ramdisk/external-config.yml)",
