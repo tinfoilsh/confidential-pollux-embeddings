@@ -1,5 +1,5 @@
-shim-version: v0.2.14@sha256:24d59ce41ad00a05ab5a37708b0d8b07a7d09abb1b74b75ee4862f688d093949
-cvm-version: 0.5.8
+shim-version: v0.2.15@sha256:5ca748b384b78b7e686b57ca66d9b3c552038ebab2ce60305004f76e573a8458
+cvm-version: 0.5.9
 cpus: 16
 memory: 65536
 gpus: full
@@ -27,7 +27,7 @@ containers:
       "-e", "GOOGLE_CLIENT_SECRET=$(sed -n 's/^google-client-secret: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "TINFOIL_API_KEY=$(sed -n 's/^tinfoil-api-key: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "HF_TOKEN=$(sed -n 's/^hf-token: *//p' /mnt/ramdisk/external-config.yml)",
-      "us-central1-docker.pkg.dev/workshop-labs-pbc/pollux-docker/ml-embeddings@sha256:5b394eb6010b135ad2be2ff8713041889c5eb31d238884eb00545679e584e0a0",
+      "us-central1-docker.pkg.dev/workshop-labs-pbc/pollux-docker/ml-embeddings@sha256:1d8b6772dbbb44110ee737040d200b711ddab763b9fe028e8caf7c3230a9e083",
       "--dev"
     ]
 
