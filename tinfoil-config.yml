@@ -27,13 +27,22 @@ containers:
       "-e", "GOOGLE_CLIENT_SECRET=$(sed -n 's/^google-client-secret: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "TINFOIL_API_KEY=$(sed -n 's/^tinfoil-api-key: *//p' /mnt/ramdisk/external-config.yml)",
       "-e", "HF_TOKEN=$(sed -n 's/^hf-token: *//p' /mnt/ramdisk/external-config.yml)",
-      "us-central1-docker.pkg.dev/workshop-labs-pbc/pollux-docker/ml-embeddings@sha256:1d8b6772dbbb44110ee737040d200b711ddab763b9fe028e8caf7c3230a9e083",
-      "--dev"
+      "us-central1-docker.pkg.dev/workshop-labs-pbc/pollux-docker/ml-embeddings@sha256:774abc316fef8aef52395e4ad133a5a1372d74bcc298d888185849a8ae14a9ac",
+      "--prod"
     ]
 
 shim:
   listen-port: 443
   upstream-port: 8000
+  publish-attestation: true
+  tls-challenge: dns
   paths:
     - /ping
+    - /set_dek
     - /v1/search
+    - /v1/file/{file_id}
+    - /v1/db/users
+    - /v1/db/files
+    - /v1/metrics
+    - /v1/stats
+    - /v1/user/{user_id}
