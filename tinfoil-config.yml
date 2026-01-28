@@ -45,4 +45,4 @@ shim:
     - /v1/db/files
     - /v1/metrics
     - /v1/stats
-    - /v1/user/{user_id}
+    - /v1/user/*
