@@ -5,7 +5,7 @@ memory: 65536
 
 containers:
   - name: "ml-embeddings"
-    image: "us-central1-docker.pkg.dev/workshop-labs-pbc/pollux-docker/ml-embeddings@sha256:169e5c71101bbca5038cdc810db76168bdc391299aaa98f4e8fc4e9828305b77"
+    image: "us-central1-docker.pkg.dev/workshop-labs-pbc/pollux-docker/ml-embeddings@sha256:8e56dccaf0fa9c0bb85123779cafddd13eefe0ed6d77116a3ba3351bc497196c"
     runtime: nvidia
     gpus: all
     ipc: host
@@ -28,6 +28,7 @@ containers:
       - GOOGLE_CLIENT_SECRET
       - TINFOIL_API_KEY
       - HF_TOKEN
+      - INTERNAL_SERVICE_SECRET
     command:
       - "--prod"
 
